@@ -78,7 +78,7 @@ if __name__ == "__main__":
     stime = time.time()
     logging.info("loading the dataset...")
     #gs = load_dataset("henriklied/voicecraft-no", args.dataset_size, use_auth_token=True, cache_dir = args.download_to, download_config=dc)
-    gs = datasets.load_dataset("audiofolder", cache_dir = args.download_to, download_config=dc, data_dir='/home/nrkbeta/.cache/huggingface/hub/datasets--NbAiLab--NST/snapshots/81dd00f3ce6d26dd7b103af91ef0013a535caacd/data/', )
+    gs = load_dataset("audiofolder", cache_dir = args.download_to, download_config=dc, data_dir='/home/nrkbeta/.cache/huggingface/hub/datasets--NbAiLab--NST/snapshots/81dd00f3ce6d26dd7b103af91ef0013a535caacd/data/', )
     logging.info(f"time spend on loading the dataset: {time.time() - stime:.2f} seconds")
 
     splits = ['validation', 'test', 'train']
