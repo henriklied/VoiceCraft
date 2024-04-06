@@ -136,7 +136,6 @@ if __name__ == "__main__":
         def __getitem__(self, ind):
             try:
                 segment_id, audio, sr, text, begin_time, end_time = self.data[ind]['segment_id'], torch.from_numpy(self.data[ind]['audio']['array']).float(), self.data[ind]['audio']['sampling_rate'], self.data[ind]['text'], self.data[ind]['begin_time'], self.data[ind]['end_time']
-                print("Audio", audio)
             except:
                 return None, None, None, None, None, None
             
@@ -176,7 +175,6 @@ if __name__ == "__main__":
             logging.info(f"====================================")
             logging.info(f"now processing mega step {m+1}/{mega_n_steps}")
             lengths = np.array(mega_batch['end_time']) - np.array(mega_batch['begin_time'])
-            print("Lengths", lengths)
             sorted_inds = sort_by_audio_len(lengths)
             for j in range(len(sorted_inds))[::-1]:
                 if lengths[sorted_inds[j]] < 0.2 or lengths[sorted_inds[j]] > args.len_cap: # skip samples that are too short (shorter than 0.2s), or too big (bigger than 80s)
