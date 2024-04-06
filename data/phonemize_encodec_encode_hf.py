@@ -97,6 +97,10 @@ if __name__ == "__main__":
         for item in tqdm.tqdm(gs[split]):
             save_fn = os.path.join(phn_save_root, item['segment_id']+".txt")
             text = item['text']
+            if text is None:
+                # Skip
+                print("Skipped", item)
+                continue
             if sum(word in forbidden_words for word in text.split(" ")):
                 logging.info(f"skip {item['segment_id']}, because it contains forbiden words. It's transcript: {text}")
                 skip += 1
