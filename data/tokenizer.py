@@ -35,7 +35,7 @@ class TextTokenizer:
 
     def __init__(
         self,
-        language="en-us",
+        language="nb",
         backend="espeak",
         separator=Separator(word="_", syllable="-", phone="|"),
         preserve_punctuation=True,

@@ -1,7 +1,7 @@
 import argparse
 def parse_args():
     parser = argparse.ArgumentParser(description="encode the librilight dataset using encodec model")
-    parser.add_argument("--dataset_size", type=str, default='xs', help='sizes of gigaspeech, xs, s, m, l, xl. we use xl for VoiceCraft training, xs is good for debugging')
+    parser.add_argument("--dataset_size", type=str, default='nst-ostlandsk', help='sizes of gigaspeech, xs, s, m, l, xl. we use xl for VoiceCraft training, xs is good for debugging')
     parser.add_argument('--download_to', type=str, default="/data/scratch/pyp/datasets/gigaspeech_debug", help="dir where you want the huggingface gigaspeech dataset to be downloaded to")
     parser.add_argument('--save_dir', type=str, default="/data/scratch/pyp/datasets/gigaspeech_phn_enc_manifest_debug", help="path to the manifest, phonemes, and encodec codes dirs")
     parser.add_argument('--encodec_model_path', type=str, default="/data/scratch/pyp/exp_pyp/audiocraft/encodec/xps/6f79c6a8/checkpoint.th")
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     dc = DownloadConfig(cache_dir=args.download_to)
     stime = time.time()
     logging.info("loading the dataset...")
-    gs = load_dataset("speechcolab/gigaspeech", args.dataset_size, use_auth_token=True, cache_dir = args.download_to, download_config=dc)
+    gs = load_dataset("henriklied/voicecraft-no", args.dataset_size, use_auth_token=True, cache_dir = args.download_to, download_config=dc)
     logging.info(f"time spend on loading the dataset: {time.time() - stime:.2f} seconds")
 
     splits = ['validation', 'test', 'train']
