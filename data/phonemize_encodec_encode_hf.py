@@ -1,7 +1,7 @@
 import argparse
 def parse_args():
     parser = argparse.ArgumentParser(description="encode the librilight dataset using encodec model")
-    parser.add_argument("--dataset_size", type=str, default='nst-ostlandsk', help='sizes of gigaspeech, xs, s, m, l, xl. we use xl for VoiceCraft training, xs is good for debugging')
+    parser.add_argument("--dataset_size", type=str, default='nst-ostlandsk_v2', help='sizes of gigaspeech, xs, s, m, l, xl. we use xl for VoiceCraft training, xs is good for debugging')
     parser.add_argument('--download_to', type=str, default="/data/scratch/pyp/datasets/gigaspeech_debug", help="dir where you want the huggingface gigaspeech dataset to be downloaded to")
     parser.add_argument('--save_dir', type=str, default="/data/scratch/pyp/datasets/gigaspeech_phn_enc_manifest_debug", help="path to the manifest, phonemes, and encodec codes dirs")
     parser.add_argument('--encodec_model_path', type=str, default="/data/scratch/pyp/exp_pyp/audiocraft/encodec/xps/6f79c6a8/checkpoint.th")
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     logging.info(f"time spend on loading the dataset: {time.time() - stime:.2f} seconds")
 
     splits = ['validation', 'test', 'train']
-    
+    splits = ['validation']
     logging.info(f"gigaspeech dataset {args.dataset_size} info: {gs}")
     logging.info(f"phonemizing...")
     phn_vocab = set()
@@ -133,6 +133,7 @@ if __name__ == "__main__":
         def __getitem__(self, ind):
             try:
                 segment_id, audio, sr, text, begin_time, end_time = self.data[ind]['segment_id'], torch.from_numpy(self.data[ind]['audio']['array']).float(), self.data[ind]['audio']['sampling_rate'], self.data[ind]['text'], self.data[ind]['begin_time'], self.data[ind]['end_time']
+                print("Audio", audio)
             except:
                 return None, None, None, None, None, None
             
@@ -172,6 +173,7 @@ if __name__ == "__main__":
             logging.info(f"====================================")
             logging.info(f"now processing mega step {m+1}/{mega_n_steps}")
             lengths = np.array(mega_batch['end_time']) - np.array(mega_batch['begin_time'])
+            print("Lengths", lengths)
             sorted_inds = sort_by_audio_len(lengths)
             for j in range(len(sorted_inds))[::-1]:
                 if lengths[sorted_inds[j]] < 0.2 or lengths[sorted_inds[j]] > args.len_cap: # skip samples that are too short (shorter than 0.2s), or too big (bigger than 80s)
