@@ -35,13 +35,13 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --d_model 1024 \
 --audio_embedding_dim 1024 \
 --nhead 16 \
---num_decoder_layers 16 \
+--num_decoder_layers 24 \
 --max_num_tokens 20000 \
 --gradient_accumulation_steps 48 \
 --val_max_num_tokens 6000 \
 --num_buckets 10 \
---audio_max_length 20 \
---audio_min_length 2 \
+--audio_max_length 16 \
+--audio_min_length 1 \
 --text_max_length 400 \
 --text_min_length 10 \
 --mask_len_min 1 \
