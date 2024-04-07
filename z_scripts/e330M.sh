@@ -40,8 +40,8 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --gradient_accumulation_steps 48 \
 --val_max_num_tokens 6000 \
 --num_buckets 10 \
---audio_max_length 16 \
---audio_min_length 1 \
+--audio_max_length 20 \
+--audio_min_length 2 \
 --text_max_length 400 \
 --text_min_length 10 \
 --mask_len_min 1 \
