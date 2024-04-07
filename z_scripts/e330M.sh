@@ -2,6 +2,7 @@
 # source ~/miniconda3/etc/profile.d/conda.sh
 # conda activate voicecraft
 export CUDA_VISIBLE_DEVICES=1,2
+export NCCL_P2P_DISABLE=1
 export WORLD_SIZE=2
 
 dataset=nst-ostlandsk_v3
