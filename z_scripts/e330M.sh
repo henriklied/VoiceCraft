@@ -68,7 +68,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --dataset $dataset \
 --exp_dir "${exp_root}/${dataset}/${exp_name}" \
 --dataset_dir ${dataset_dir} \
---load_model_from './pretrained_models/giga330M.pth' \
+--load_model_from '../pretrained_models/gigaHalfLibri330M_TTSEnhanced_max16s.pth' \
 --seed 1 \
 --precision 'float16' \
 --num_epochs 10 \
