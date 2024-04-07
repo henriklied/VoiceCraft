@@ -37,7 +37,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --nhead 16 \
 --num_decoder_layers 24 \
 --max_num_tokens 20000 \
---gradient_accumulation_steps 24 \
+--gradient_accumulation_steps 48 \
 --val_max_num_tokens 6000 \
 --num_buckets 10 \
 --audio_max_length 16 \
@@ -64,7 +64,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --mask_sample_dist poisson1 \
 --max_mask_portion 0.9 \
 --min_gap 5 \
---num_workers 8 \
+--num_workers 4 \
 --dynamic_batching 1 \
 --dataset $dataset \
 --exp_dir "${exp_root}/${dataset}/${exp_name}" \
