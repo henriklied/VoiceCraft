@@ -24,7 +24,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --pad_x 0 \
 --codebook_weight '[2,1,1,1]' \
 --encodec_sr 50 \
---num_steps 50000 \
+--num_steps 5000 \
 --lr 0.05 \
 --warmup_fraction 0.1 \
 --optimizer_name "AdamW" \
