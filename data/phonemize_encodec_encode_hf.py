@@ -33,10 +33,12 @@ if __name__ == "__main__":
     
     # get the path
     phn_save_root = os.path.join(args.save_dir, args.dataset_size, "phonemes")
+    manifest_save_root = os.path.join(args.save_dir, args.dataset_size, "manifest")
     codes_save_root = os.path.join(args.save_dir, args.dataset_size, "encodec_16khz_4codebooks")
     vocab_fn = os.path.join(args.save_dir, args.dataset_size, "vocab.txt")
     os.makedirs(phn_save_root, exist_ok=True)
     os.makedirs(codes_save_root, exist_ok=True)
+    os.makedirs(manifest_save_root, exist_ok=True)
 
 
     def sort_by_audio_len(lens):
@@ -113,6 +115,8 @@ if __name__ == "__main__":
                 phn_seq = phn_seq.replace(k, v)
             phn_vocab.update(phn_seq.split(" "))
             all_lens.append(len(phn_seq.split(" ")))
+            with open(os.path.join(manifest_save_root, f"{split}.txt"), 'a') as f:
+                f.write("0\t%s\t%s\n" % (item['segment_id'], len(phn_seq.split(" "))))
             with open(save_fn, "w") as f:
                 f.write(phn_seq)
         logging.info(f"split {split} has {len(gs[split])} samples in total, skipped {skip} due to forbiden words")
