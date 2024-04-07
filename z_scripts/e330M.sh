@@ -27,7 +27,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --num_steps 50000 \
 --lr 0.05 \
 --warmup_fraction 0.1 \
---optimizer_name "ScaledAdam" \
+--optimizer_name "AdamW" \
 --pseudo_epoch_size 3000 \
 --reduce_lr_start_step 3000 \
 --reduce_lr_start_epoch 4 \
