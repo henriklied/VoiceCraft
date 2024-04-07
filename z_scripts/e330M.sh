@@ -1,6 +1,6 @@
 #!/bin/bash
-source ~/miniconda3/etc/profile.d/conda.sh
-conda activate voicecraft
+# source ~/miniconda3/etc/profile.d/conda.sh
+# conda activate voicecraft
 export CUDA_VISIBLE_DEVICES=1,2
 export WORLD_SIZE=2
 
