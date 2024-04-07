@@ -329,7 +329,7 @@ class Trainer:
             pickle.dump(self.total_progress, f)
 
     def _setup_dataloader(self):
-        assert self.args.dataset == 'voicecraft-no', "only gigaspeech is supported for now"
+        # assert self.args.dataset == 'voicecraft-no', "only gigaspeech is supported for now"
         train_dataset, val_dataset = gigaspeech.dataset(self.args, 'train'), gigaspeech.dataset(self.args, 'validation')
         
         if self.args.dynamic_batching:
