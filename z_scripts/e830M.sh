@@ -2,7 +2,8 @@
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate voicecraft
 export CUDA_VISIBLE_DEVICES=0,1,2,3
-export WORLD_SIZE=4
+export NCCL_P2P_DISABLE=1
+export WORLD_SIZE=2
 
 dataset=gigaspeech
 mkdir -p ./logs/${dataset}
@@ -21,11 +22,11 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --eos 2051 \
 --n_special 4 \
 --pad_x 0 \
---codebook_weight "[5,1,0.5,0.1]" \
+--codebook_weight '[2,1,1,1]' \
 --encodec_sr 50 \
---num_steps 50000 \
+--num_steps 5000 \
 --lr 0.05 \
---warmup_fraction 0.01 \
+--warmup_fraction 0.1 \
 --optimizer_name "ScaledAdam" \
 --pseudo_epoch_size 3000 \
 --reduce_lr_start_step 3000 \
