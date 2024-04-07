@@ -8,9 +8,8 @@ wget -c https://huggingface.co/datasets/pyp1/VoiceCraft_RealEdit/raw/main/vocab.
 cd data
 python phonemize_encodec_encode_hf.py \
 --download_to ../hf_downloads \
---encodec_model_path ../extracted_codes_and_phonemes \
 --encodec_model_path ../pretrained_models/encodec_4cb2048_giga.th \
+--save_dir ../saves \
 --mega_batch_size 60 \
 --batch_size 16 \
---max_len 20000 \
---save_dir ../saves
+--max_len 20000
