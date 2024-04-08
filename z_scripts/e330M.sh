@@ -25,8 +25,8 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --codebook_weight '[2,1,1,1]' \
 --encodec_sr 50 \
 --num_steps 5000 \
---lr 0.05 \
---warmup_fraction 0.1 \
+--lr 5e-3 \
+--warmup_fraction 0.25 \
 --optimizer_name "AdamW" \
 --pseudo_epoch_size 3000 \
 --reduce_lr_start_step 3000 \
@@ -46,7 +46,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --text_min_length 10 \
 --mask_len_min 1 \
 --mask_len_max 600 \
---tb_write_every_n_steps 100 \
+--tb_write_every_n_steps 50 \
 --print_every_n_steps 400 \
 --val_every_n_steps 1600 \
 --text_vocab_size 120 \
@@ -74,6 +74,7 @@ torchrun --nnodes=1 --rdzv-backend=c10d --rdzv-endpoint=localhost:41977 --nproc_
 --precision 'float16' \
 --num_epochs 10 \
 --gradient_clip_val 1.0 
+# --resume
 #--early_stop_step 3200 \
 # --early_stop_threshold -1.0
 #  >> ./logs/${dataset}/${exp_name}.log 2>&1
